@@ -1,0 +1,7 @@
+Merge two sorted arrays:
+public void merger(int[]nums1,int m,int n,int[] nums2){
+for(int i=0;i<n;i++){
+nums1[m+i]=nums2[i];
+Arrays.sort(nums1);
+}
+}
