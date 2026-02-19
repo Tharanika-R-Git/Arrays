@@ -1,0 +1,26 @@
+class Solution {
+    public String reverseStr(String s, int k) {
+        char[] arr = s.toCharArray();  // Convert to char array for easy swapping
+        int n = arr.length;
+
+        // Process in blocks of 2k
+        for (int i = 0; i < n; i += 2 * k) {
+
+            int left = i;
+            
+            // Ensure we don't go out of bounds
+            int right = Math.min(i + k - 1, n - 1);
+
+            // Reverse first k characters in current block
+            while (left < right) {
+                char temp = arr[left];
+                arr[left] = arr[right];
+                arr[right] = temp;
+                left++;
+                right--;
+            }
+        }
+
+        return new String(arr);
+    }
+}
