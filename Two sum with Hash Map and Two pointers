@@ -1,0 +1,40 @@
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+// Map<Integer,Integer>map = new HashMap<>();
+// for(int i=0;i<nums.length;i++){
+//     int complement =  target-nums[i];
+//     if(map.containsKey(complement))return new int[]{map.get(complement),i};
+//     map.put(nums[i],i);
+// }
+// return new int[]{};
+// }
+// }
+        int n = nums.length;
+        int[][] pairs = new int[n][2];
+
+        // Step 1: store value and original index
+        for (int i = 0; i < n; i++) {
+            pairs[i][0] = nums[i];  // value
+            pairs[i][1] = i;        // original index
+        }
+
+        // Step 2: sort by value
+        Arrays.sort(pairs, (a, b) -> Integer.compare(a[0], b[0]));
+
+        // Step 3: two-pointer on sorted values
+        int left = 0;
+        int right = n - 1;
+
+        while (left < right) {
+            int sum = pairs[left][0] + pairs[right][0];
+            if (sum < target) left++;
+            else if (sum > target) right--;
+            else {
+                // Step 4: return original indices
+                return new int[]{pairs[left][1], pairs[right][1]};
+            }
+        }
+
+        return new int[]{}; // no pair found
+    }
+}
